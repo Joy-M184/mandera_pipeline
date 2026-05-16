@@ -22,12 +22,12 @@ def main():
     try:
 
         # Generate and insert customers
-        customers = fake_customers.generate()
+        customers = fake_customers.generate(batch_id)
         db[MONGO_COLLECTIONS['customers']].insert_many(customers)
         print(f"Inserted {len(customers)} customers into MongoDB.")
     
         # Generate and insert products
-        products = fake_products.generate()
+        products = fake_products.generate(batch_id)
         db[MONGO_COLLECTIONS['products']].insert_many(products)
         print(f"Inserted {len(products)} products into MongoDB.")
 
@@ -36,7 +36,7 @@ def main():
         #all_product_ids = db[MONGO_COLLECTIONS["products"]].distinct ("product_id")
 
         # Generate and insert orders
-        orders = fake_orders.generate()
+        orders = fake_orders.generate(batch_id)
         db[MONGO_COLLECTIONS['orders']].insert_many(orders)
         print(f"Inserted  {len(orders)} orders into MongoDB.")
         
