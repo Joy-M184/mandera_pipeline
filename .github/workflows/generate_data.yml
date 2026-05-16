@@ -1,14 +1,13 @@
-name: Generate Synthetic Data -> MongoDB Atlas
+name: Generate Synthetic Data - MongoDB Atlas
 
 on:
   schedule:
-    # 8:00 AM WAT (UTC+1) = 07:00 UTC
-    - cron: "0 7 * * *"  # Runs at 07:00
-    # 4:00 PM WAT (UTC+1) = 15:00 UTC
-    - cron: "0 15 * * *"  # Runs at 15:00
-
-    # Allows manual trigger or on-demand data generation.
+    - cron: "0 7 * * *"
+    - cron: "0 15 * * *"
   workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   generate-data:
@@ -28,11 +27,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install faker pymongo
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Generate synthetic data to MongoDB Atlas
-        run: |
-          python -m generator.data_generator.py
+      - name: Generate synthetic data - MongoDB Atlas
         env:
           MONGO_URL: ${{ secrets.MONGO_URL }}
           MONGO_DB: ${{ secrets.MONGO_DB }}
@@ -47,8 +45,7 @@ jobs:
           PAYMENT_STATUSES: ${{ secrets.PAYMENT_STATUSES }}
           PRODUCT_CATEGORIES: ${{ secrets.PRODUCT_CATEGORIES }}
           NUMBER_OF_BATCHES: ${{ secrets.NUMBER_OF_BATCHES }}
+        run: python generator/data_generator.py
 
       - name: Log summary
-        run: |
-          echo "Data generated at $(date -u '+%Y-%m-%d %H:%M: UTC')"
-          
+        run: echo "Data generated at $(date -u '+%Y-%m-%d %H:%M UTC')"
