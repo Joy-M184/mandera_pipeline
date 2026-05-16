@@ -2,7 +2,7 @@
 import random
 from datetime import datetime, timezone
 from faker import Faker
-from config.settings import PRODUCTS_MAX, PRODUCTS_MIN, PRODUCTS_MAX_MAX
+from config.settings import PRODUCTS_MAX, PRODUCTS_MIN
 
 
 fake = Faker()
