@@ -44,3 +44,5 @@ def main():
         client.close()
     print("\nData generation complete.")    
         
+if __name__ == "__main__":
+    main()
