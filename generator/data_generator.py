@@ -7,7 +7,7 @@ Usage:
 
 from pymongo import MongoClient
 
-from config.settings import MONGO_URL, MONGO_DB, MONGO_COLLECTIONS, GENERATE_BATCH_ID, generate_batch_id
+from config.settings import MONGO_URL, MONGO_DB, MONGO_COLLECTIONS, generate_batch_id
 from generator import fake_customers, fake_products, fake_orders
 
 def main():
