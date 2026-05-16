@@ -87,3 +87,7 @@ def generate_batch_id() -> str:
         batch_num = 1 if hour < 12 else 2
     return f"{date_part}_{hour:02d}_batch_0{batch_num}" 
 
+
+REGIONS = ["North", "South", "East", "West", "Central"]
+
+PRODUCT_IDS = [f"PROD{i:05d}" for i in range(1, 101)]
