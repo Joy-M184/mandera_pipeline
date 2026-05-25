@@ -1,3 +1,4 @@
 pymongo
 faker
 python-dotenv
+minio
